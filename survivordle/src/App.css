@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#category {
+  border: thin solid black;
+  padding: 5px;
+  margin: 0px;
+  border-radius: 25px;
+  width: 170px;
+  height: 60px;
+  font-size: 20px;
+}
+.Guess {background-color: #787c7f;}
+
+.green {
+  background-color: #6ca965;
+}
+
+.yellow {
+  background-color: #c8b653;
+}
+
+.guess{
+  display: flex;
+  flex-direction: row;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.green, .yellow, .none{
+  border: thin solid black;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 25px;
+  color: white;
+  
+}
+
+.input {
+  border-radius: 10px;
+  margin: 20px;
+  padding: 5px;
+  font-size: large;
+}
+
+.submit {
+  border-radius: 10px;
+  padding: 5px;
+  font-size: large;
+}
+
+.submit:hover {
+  background-color: #6ca965;
+  cursor: pointer;
+}
+
+.suggestions-list {
+  border: thin solid gray;
+  border-radius: 10px;
+  
+  list-style-type: none;
+  
+}
+
+.list-items:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+.feedback {
+  display: block;
+}
+
+.refresh {
+  text-decoration: underline;
+  color: #c8b653;
+}
+
+.refresh:hover {
+  color: #6ca965;
+  cursor: pointer;
+}
+
+#correct-answer {
+  display: none;
+}
