@@ -1,9 +1,11 @@
 import castaways from "../../castaways";
 import React, { useState } from "react";
 import GuessDisplay from "../GuessDisplay/guessDisplay";
+import scores from "../../scores";
 
 
 const correct = castaways[Math.floor(Math.random() * castaways.length)];
+const correctScore = scores.find(score => score.castaway_id === correct.castaway_id);
 
 function Board() {
   
@@ -79,7 +81,7 @@ function Board() {
   <div className="board">
     <h1>Survivordle</h1>
     <h3>Guess the Survivor castaway in 6 tries or less!</h3>
-    <p>(Clues are based on the castaways' first season)</p>
+    <p class="instructions">Clues are based on the castaways' first season.<br></br> Clues in yellow are within 3 of the correct answer</p>
     <GuessDisplay correct={ correct } feedback ={ feedback } turn = {turn} foundList = {foundList}/>
     
     <input
@@ -105,7 +107,30 @@ function Board() {
         </ul>
       )}
     </div>
-    <div id="correct-answer"><p>Correct answer is: {correct.full_name}</p>
+    <div id="correct-answer"><p>Correct answer: 
+      <td><div className="green" id="category-name">
+      Name: <div class="found">{correct.full_name}</div>
+      </div></td>
+
+      <td><div className="green" id="category">
+        Placement: <div class="found">{correct.place}</div>
+      </div></td>
+
+      <td><div className="green" id="category">
+        Season: <div class="found">{correct.season}</div>
+      </div></td>
+
+      <td><div className="green" id="category">
+        Days Played: <div class="found">{correct.day}</div>
+      </div></td>
+
+      <td><div className="green" id="category">
+        Tribals Attended: <div class="found">{correctScore.n_tribals}</div>
+      </div></td>
+
+      <td><div className="green" id="category">
+        Votes Received: <div class="found">{correctScore.n_votes_received}</div>
+      </div></td></p>
     <p>Click <a class="refresh" onClick={refreshPage}>here</a> to play again.</p></div>
   </div>
   )

@@ -17,15 +17,26 @@
   color: #61dafb;
 }
 
-#category {
+#category, #category-name {
   border: thin solid black;
-  padding: 5px;
+  padding: 5px 10px;
   margin: 0px;
   border-radius: 25px;
-  width: 170px;
+  width: 150px;
   height: 60px;
   font-size: 20px;
 }
+
+#category-name {
+  border: thin solid black;
+  padding: 5px 10px;
+  margin: 0px;
+  border-radius: 25px;
+  width: 232px;
+  height: 60px;
+  font-size: 20px;
+}
+
 .Guess {background-color: #787c7f;}
 
 .green {
@@ -50,6 +61,10 @@
   border-radius: 25px;
   color: white;
   
+}
+
+.instructions {
+  font-size: large;
 }
 
 .input {

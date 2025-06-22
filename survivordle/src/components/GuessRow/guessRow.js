@@ -4,6 +4,9 @@ import scores from "../../scores";
 
 function GuessRow({ found, correct}) {
 
+  const foundScore = scores.find(score => score.castaway_id === found.castaway_id)
+  const correctScore = scores.find(score => score.castaway_id === correct.castaway_id)
+
   const conditionalStylesName = classNames("Guess", {
     "green": found.full_name === correct.full_name,
     "none": found.full_name
@@ -11,7 +14,7 @@ function GuessRow({ found, correct}) {
 
   const conditionalStylesSeason = classNames("Guess", {
     "green": found.season === correct.season,
-    "yellow": found.season !== correct.season && found.season >= correct.season - 5 && found.season <= correct.season + 5,
+    "yellow": found.season !== correct.season && found.season >= correct.season - 3 && found.season <= correct.season + 3,
     "none": found.season 
   });
 
@@ -21,23 +24,29 @@ function GuessRow({ found, correct}) {
     "none": found.place
   });
 
- /* const conditionalStylesVotesAgainst = classNames("Guess", {
-    "green": found["votes against"] === correct["votes against"],
-    "yellow": found["votes against"] !== correct["votes against"] && found["votes against"] >= correct["votes against"] - 3 && found["votes against"] <= correct["votes against"] + 3,
-    "none": found["votes against"]
-  });   */
+  const conditionalStylesVotesAgainst = classNames("Guess", {
+    "green": foundScore.n_votes_received === correctScore.n_votes_received,
+    "yellow": foundScore.n_votes_received !== correctScore.n_votes_received && foundScore.n_votes_received >= correctScore.n_votes_received - 3 && foundScore.n_votes_received <= correctScore.n_votes_received + 3,
+    "none": foundScore.n_votes_received
+  });
 
   const conditionalStylesDaysPlayed = classNames("Guess", {
     "green": found.day === correct.day,
-    "yellow": found.day !== correct.day && found.day >= correct.day - 5 && found.day <= correct.day + 5,
+    "yellow": found.day !== correct.day && found.day >= correct.day - 3 && found.day <= correct.day + 3,
     "none": found.day
+  });
+
+  const conditionalStylesTribals = classNames("Guess", {
+    "green": foundScore.n_tribals === correctScore.n_tribals,
+    "yellow": foundScore.n_tribals !== correctScore.n_tribals && foundScore.n_tribals >= correctScore.n_tribals - 3 && foundScore.n_tribals <= correctScore.n_tribals + 3,
+    "none": foundScore.n_tribals
   });
 
 return (
   <div>
     <tr>
-  <td><div className={conditionalStylesName} id="category">
-        Name: <div class="found">{found.full_name}</div>
+  <td><div className={conditionalStylesName} id="category-name">
+      Name: <div class="found">{found.full_name}</div>
       </div></td>
 
       <td><div className={conditionalStylesplace} id="category">
@@ -50,6 +59,14 @@ return (
 
       <td><div className={conditionalStylesDaysPlayed} id="category">
         Days Played: <div class="found">{found.day}</div>
+      </div></td>
+
+      <td><div className={conditionalStylesTribals} id="category">
+        Tribals Attended: <div class="found">{foundScore.n_tribals}</div>
+      </div></td>
+
+      <td><div className={conditionalStylesVotesAgainst} id="category">
+        Votes Received: <div class="found">{foundScore.n_votes_received}</div>
       </div></td>
       </tr>
       </div>
